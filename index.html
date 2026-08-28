@@ -1440,6 +1440,33 @@ async function finishSwipe(direction, person){
 
 // Set initial language (Hindi) on load so text is consistent even before Continue is pressed
 applyLanguage('hi');
+function handleSendOTP() {
+  var phoneInput = document.getElementById("phoneInput").value;
+  if (!phoneInput || phoneInput.length < 10) {
+    alert("Kripya sahi 10-digit mobile number daalein!");
+    return;
+  }
+  var configuration = {
+    widgetId: "366842714a64363633343432",
+    tokenAuth: 565355Aujajc2KISE6a91d738P1
+    identifier: "91" + phoneInput,
+    exposeMethods: true,
+    success: (data) => {
+      console.log("OTP Verification Successful:", data);
+      alert("OTP Verification Successful!");
+    },
+    failure: (error) => {
+      console.error("OTP Error:", error);
+      alert("OTP Verification Failed!");
+    }
+  };
+  if (window.initSendOTP) {
+    window.initSendOTP(configuration);
+  } else {
+    alert("Script load nahi hui, page refresh karein.");
+  }
+  }
+    
 </script>
 </body>
 </html>
